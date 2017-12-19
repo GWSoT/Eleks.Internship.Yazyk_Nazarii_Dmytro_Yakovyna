@@ -1,0 +1,126 @@
+﻿@model WTracking.Models.Profile
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DisplayName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DisplayName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserGender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserGender)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TodayStepCount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TodayStepCount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AverageStepCountForToday)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AverageStepCountForToday)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstDayProgress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstDayProgress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondDayProgress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SecondDayProgress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ThirdDayProgress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThirdDayProgress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FourthDayProgress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FourthDayProgress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FifthDayProgress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FifthDayProgress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SixthDayProgress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SixthDayProgress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SeventhDayProgress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SeventhDayProgress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MondaySchedule)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MondaySchedule)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TuesdaySchedule)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TuesdaySchedule)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WednesdaySchedule)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WednesdaySchedule)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ThursdaySchedule)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThursdaySchedule)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FridaySchedule)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FridaySchedule)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SaturdaySchedule)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SaturdaySchedule)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SundaySchedule)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SundaySchedule)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

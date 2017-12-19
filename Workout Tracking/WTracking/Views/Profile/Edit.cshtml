@@ -1,0 +1,143 @@
+﻿@model WTracking.Models.Profile
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Profile</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="DisplayName" class="control-label"></label>
+                <input asp-for="DisplayName" class="form-control" />
+                <span asp-validation-for="DisplayName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserGender" class="control-label"></label>
+                <select asp-for="UserGender" class="form-control" asp-items="@Html.GetEnumSelectList<UserGender>()"></select>
+                <span asp-validation-for="UserGender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TodayStepCount" class="control-label"></label>
+                <input asp-for="TodayStepCount" class="form-control" />
+                <span asp-validation-for="TodayStepCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AverageStepCountForToday" class="control-label"></label>
+                <input asp-for="AverageStepCountForToday" class="form-control" />
+                <span asp-validation-for="AverageStepCountForToday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstDayProgress" class="control-label"></label>
+                <input asp-for="FirstDayProgress" class="form-control" />
+                <span asp-validation-for="FirstDayProgress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondDayProgress" class="control-label"></label>
+                <input asp-for="SecondDayProgress" class="form-control" />
+                <span asp-validation-for="SecondDayProgress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThirdDayProgress" class="control-label"></label>
+                <input asp-for="ThirdDayProgress" class="form-control" />
+                <span asp-validation-for="ThirdDayProgress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FourthDayProgress" class="control-label"></label>
+                <input asp-for="FourthDayProgress" class="form-control" />
+                <span asp-validation-for="FourthDayProgress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FifthDayProgress" class="control-label"></label>
+                <input asp-for="FifthDayProgress" class="form-control" />
+                <span asp-validation-for="FifthDayProgress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SixthDayProgress" class="control-label"></label>
+                <input asp-for="SixthDayProgress" class="form-control" />
+                <span asp-validation-for="SixthDayProgress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeventhDayProgress" class="control-label"></label>
+                <input asp-for="SeventhDayProgress" class="form-control" />
+                <span asp-validation-for="SeventhDayProgress" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MondaySchedule" class="control-label"></label>
+                <input asp-for="MondaySchedule" class="form-control" />
+                <span asp-validation-for="MondaySchedule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TuesdaySchedule" class="control-label"></label>
+                <input asp-for="TuesdaySchedule" class="form-control" />
+                <span asp-validation-for="TuesdaySchedule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WednesdaySchedule" class="control-label"></label>
+                <input asp-for="WednesdaySchedule" class="form-control" />
+                <span asp-validation-for="WednesdaySchedule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThursdaySchedule" class="control-label"></label>
+                <input asp-for="ThursdaySchedule" class="form-control" />
+                <span asp-validation-for="ThursdaySchedule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FridaySchedule" class="control-label"></label>
+                <input asp-for="FridaySchedule" class="form-control" />
+                <span asp-validation-for="FridaySchedule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SaturdaySchedule" class="control-label"></label>
+                <input asp-for="SaturdaySchedule" class="form-control" />
+                <span asp-validation-for="SaturdaySchedule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SundaySchedule" class="control-label"></label>
+                <input asp-for="SundaySchedule" class="form-control" />
+                <span asp-validation-for="SundaySchedule" class="text-danger"></span>
+            </div>
+            @if (Model.ProfilePicture != null)
+            {
+            <div class="form-group">
+                <div class="col-md-10">
+                    <img src="~/uploads//@Model.User.Id/@Model.ProfilePicture" />
+                    <input type="hidden" asp-for="ProfilePicture" />
+                </div>
+            </div>
+            }
+            <div class="form-group">
+                <label asp-for="ProfilePicture" class="control-label"></label>
+                <input name="ProfilePictureFile" type="file"/>
+                <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+            
+        </form>
+        <form asp-action="FetchApi" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+            <div>
+                <p>
+                    <button type="submit" class="btn btn-default" name="provider" value="GoogleFit" title="Log in using your Google Fit account">Google Fit</button>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

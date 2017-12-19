@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WTracking.Models.Profile>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+
+<P>
+    @ViewBag.UsrProgress
+</P>
+
+
+<form>
+    <div>
+        <input type="text" name="SearchString" placeholder="Search"/>
+        <input type="text" name="UniqueId" placeholder="Username"/>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DisplayName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserGender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TodayStepCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AverageStepCountForToday)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserGender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TodayStepCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AverageStepCountForToday)
+            </td>
+            <td>
+                <a asp-action="Edit">Edit</a>
+            </td>
+
+        </tr>
+}
+
+    </tbody>
+</table>
