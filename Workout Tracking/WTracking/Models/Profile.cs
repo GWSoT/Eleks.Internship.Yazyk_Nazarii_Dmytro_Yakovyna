@@ -25,12 +25,12 @@ namespace WTracking.Models
 
         public int TodayStepCount { get; set; }
 
-        public int AverageStepCountForToday { get; set; }
+        public int AverageStepCountForToday { get; set; } // why you can't store time and than calculate average?
 
         public string ProfilePicture { get; set; }
 
         public DateTime LastFetchTime { get; set; }
-
+        //why you don't use lists or array for progress, it will normalize your database
         #region ProgressRegion
         public int FirstDayProgress { get; set; }
         public int SecondDayProgress { get; set; }
@@ -65,6 +65,6 @@ namespace WTracking.Models
         public DateTime SundaySchedule { get; set; }
 #endregion
 
-        public ApplicationUser User { get; set; }
+        public ApplicationUser User { get; set; } // it created double relation because your already use Profile in ApplicationUser
     }
 }

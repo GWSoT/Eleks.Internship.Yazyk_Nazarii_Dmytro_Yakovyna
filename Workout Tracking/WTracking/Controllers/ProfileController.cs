@@ -45,10 +45,10 @@ namespace WTracking.Controllers
             _environment = environment;
         }
         
-        public async Task<IActionResult> Index(string searchString, string uniqueId)
+        public async Task<IActionResult> Index(string searchString, string uniqueId) // why you can't use just search string?
         {
             
-            var userList = from u in _context.Profile
+            var userList = from u in _context.Profile // better use AsQueryable or ToList
                            select u;
 
             var currUser = await _userManager.GetUserAsync(User);
@@ -59,7 +59,7 @@ namespace WTracking.Controllers
                 var profile = _context.Profile.SingleOrDefault(x => x.Id == currUser.ProfileId);
 
                 string usrProgress = (profile.TodayStepCount >= profile.AverageStepCountForToday) ? "You're doing great!" : $"For today you should walk '{profile.AverageStepCountForToday - profile.TodayStepCount}' more steps.";
-                ViewBag.UsrProgress = usrProgress;
+                ViewBag.UsrProgress = usrProgress; // you don't use this variable anywhere, put the value in place 
 
                 if (!String.IsNullOrEmpty(uniqueId))
                 {
@@ -75,6 +75,7 @@ namespace WTracking.Controllers
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     userList = userList.Where((s) => s.DisplayName == searchString);
+                    // why you don't add null behavior
                 }
             }
 
@@ -87,7 +88,7 @@ namespace WTracking.Controllers
             if (currUser == null)
             {
                 return NotFound();
-            }
+            } // maybe better use User.Identity.IsAuthenticated
             return View(profile);
         }
 
@@ -135,7 +136,7 @@ namespace WTracking.Controllers
                       'bucketByTime': { 'durationMillis': 86400000 },
                       'startTimeMillis': " + lastWeekInUnix + @",
                       'endTimeMillis': " + DateTimeOffset.Now.ToUnixTimeMilliseconds() + @"
-                    }";
+                    }"; // better use Json.NET
 
 
                 var todaysProgressJson = @"
@@ -153,7 +154,7 @@ namespace WTracking.Controllers
                 string content = await GoogleFitApiPostAggregate(token, weekProgressJson);
                 string todayProgress = await GoogleFitApiPostAggregate(token, todaysProgressJson);
 
-                dynamic jsonContent = JsonConvert.DeserializeObject(content);
+                dynamic jsonContent = JsonConvert.DeserializeObject(content); // better create special DAO for this
                 dynamic todaysProgressJsonDeserialized = JsonConvert.DeserializeObject(todayProgress);
 
                 var profile = await _context.Profile.SingleOrDefaultAsync(m => m.Id == user.ProfileId);
@@ -163,9 +164,9 @@ namespace WTracking.Controllers
                 {
                     foreach (var item in jsonContent.bucket)
                     {
-                        try
+                        try // why you use try inside try?
                         {
-                            if (i == 0)
+                            if (i == 0) // use switch - case
                                 profile.FirstDayProgress += (int)item.dataset[0].point[0].value[0].intVal;
                             else if (i == 1)
                                 profile.SecondDayProgress += (int)item.dataset[0].point[0].value[0].intVal;
@@ -198,7 +199,7 @@ namespace WTracking.Controllers
                         }
                         ++i;
                     }
-                } catch { }
+                } catch { } // you must handle possible exception
                 try
                 {
                     profile.TodayStepCount += (int)todaysProgressJsonDeserialized.bucket[0].dataset[0].point[0].value[0].intVal;
